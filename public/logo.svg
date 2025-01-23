@@ -1,0 +1,26 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- Face avant du cube -->
+    <polygon points="20,20 80,20 80,80 20,80" fill="#86C232"/>
+
+    <!-- Face droite du cube -->
+    <polygon points="80,20 90,10 90,70 80,80" fill="#A0D10D"/>
+
+    <!-- Face supérieure du cube -->
+    <polygon points="20,20 30,10 90,10 80,20" fill="#6DB525"/>
+
+    <!-- Contours de l'ombre pour la face avant -->
+    <line x1="20" y1="20" x2="80" y2="20" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="80" y1="20" x2="80" y2="80" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="80" y1="80" x2="20" y2="80" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="20" y1="80" x2="20" y2="20" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+
+    <!-- Contours de la face droite -->
+    <line x1="80" y1="20" x2="90" y2="10" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="90" y1="10" x2="90" y2="70" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="90" y1="70" x2="80" y2="80" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+
+    <!-- Contours de la face supérieure -->
+    <line x1="20" y1="20" x2="30" y2="10" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="30" y1="10" x2="90" y2="10" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+    <line x1="90" y1="10" x2="80" y2="20" stroke="black" stroke-opacity="0.4" stroke-width="1"/>
+</svg>

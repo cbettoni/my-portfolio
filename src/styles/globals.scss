@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --light-gray-cb: #ededed;
+  --gray-cb: #474B4F;
+  --dark-gray-cb: #222629;
+  --green-cb: #86C232;
+  --dark-green-cb: #61892F;
+  --radius: 0.375rem;
+}
+
+.container {
+  max-width: 1760px;
+  position: relative;
+  margin: 0 auto;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--light-gray-cb);
+}
+
+@media screen and (max-width: 639px) {
+  h1 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+}
+
+#contact{
+  h2{
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3rem;
+    max-width: 850px;
+    border-radius: 3.75rem 3.75rem 3.75rem .5rem;
+    padding: .75rem 1rem;
+  }
+  h3{
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.5rem;
+    padding: 0 .75rem;
+    max-width: 850px;
+  }
+}
+
+
+p{
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.625rem;
+}
