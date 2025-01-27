@@ -34,11 +34,8 @@
 
 .sticky-nav {
   /*position: fixed;*/
-  width: calc(100% - 2rem);
   z-index: 100;
   padding: 1.2rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
   box-sizing: border-box;
   .menuOpen {
     z-index: 10000;
@@ -65,7 +62,7 @@
     display: block;
     height: 4px;
     width: 100%;
-    background-color: var(--light-gray-cb);
+    background-color: var(--green-cb);
     transition: all 0.3s ease;
   }
 
@@ -97,12 +94,12 @@
     display: block;
     height: 4px;
     width: 100%;
-    background-color: var(--light-gray-cb);
+    background-color: var(--green-cb);
     transition: all 0.3s ease;
   }
 
   .burger-menu.active span:nth-child(1) {
-    transform: rotate(50deg) translate(8px, 7px);
+    transform: rotate(50deg) translate(6px, 6px);
   }
 
   .burger-menu.active span:nth-child(2) {

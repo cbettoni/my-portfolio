@@ -1,3 +1,4 @@
+/* styles/global.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +12,11 @@
   --radius: 0.375rem;
 }
 
+/* Global Styles */
+body {
+  background-color: var(--light-gray-cb);
+}
+
 .container {
   max-width: 1760px;
   position: relative;
@@ -19,41 +25,151 @@
   overflow: hidden;
 }
 
-body {
-  background-color: var(--light-gray-cb);
+a {
+  text-decoration: none;
 }
 
-@media screen and (max-width: 639px) {
-  h1 {
-    font-size: 2.5rem;
-    line-height: 3rem;
-  }
+header, footer {
+  background-color: var(--dark-gray-cb);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
-#contact{
-  h2{
-    font-size: 2.5rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 3rem;
-    max-width: 850px;
-    border-radius: 3.75rem 3.75rem 3.75rem .5rem;
-    padding: .75rem 1rem;
-  }
-  h3{
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  font-weight: bold;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  color: white;
+  padding: 0 20px;
+}
+
+.about, .projects, .contact {
+  padding: 50px;
+  text-align: center;
+}
+
+/* Responsive Design */
+
+/* Small devices (phones) */
+@media (max-width: 767px) {
+  .hero h1 {
     font-size: 2rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 2.5rem;
-    padding: 0 .75rem;
-    max-width: 850px;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .project-card {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  .project-list {
+    flex-direction: column;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin-bottom: 10px;
   }
 }
 
+/* Medium devices (tablets) */
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
 
-p{
+  .hero p {
+    font-size: 1.4rem;
+  }
+
+  .project-card {
+    width: 45%;
+  }
+
+  .project-list {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 1025px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.5rem;
+  }
+
+  .project-card {
+    width: 300px;
+  }
+
+  .project-list {
+    gap: 20px;
+  }
+}
+
+.project-card {
+  background-color: var(--light-gray-cb);
+  border-radius: var(--radius);
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.project-content img {
+  width: 500px;
+  object-fit: cover;
+  border-radius: var(--radius); /* Applique le rayon de bordure */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre discrète */
+}
+
+.project-card h3 {
+  color: var(--dark-gray-cb);
+  font-size: 1.5rem;
+}
+
+.project-card p {
+  color: var(--gray-cb);
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 1.625rem;
+}
+
+.project-card a {
+  color: var(--green-cb);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.project-card a:hover {
+  color: var(--dark-green-cb); /* Changer la couleur du lien au survol */
 }

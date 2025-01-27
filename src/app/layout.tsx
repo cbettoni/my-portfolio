@@ -1,6 +1,7 @@
 // app/layout.tsx
 import '@/styles/globals.scss';
 import localFont from 'next/font/local';
+import Head from "next/head";
 
 const commuters = localFont({
     src: [
@@ -40,6 +41,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={commuters.className}>
         <head>
+            <title>Christelle Bettoni - Portfolio</title>
             <link rel="icon" href="/favicon.ico" />
         </head>
         <body>

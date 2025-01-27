@@ -8,6 +8,7 @@ import { initNavbar } from '@/js/navbar';
 import Button from "./button";
 
 const Header = () => {
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -18,7 +19,7 @@ const Header = () => {
 
     return (
         <header className="w-full m-auto">
-            <div className="sticky-nav rounded-3xl mt-8 bg-dark-gray-cb flex flex-col justify-between 2xl:flex-row transition-colors duration-300">
+            <div className="sticky-nav flex flex-col justify-between 2xl:flex-row transition-colors duration-300">
                 <div className="container flex justify-between flex-col 2xl:flex-row">
                     <div className="flex justify-between items-center">
                         <Link href="/" className="logo w-[50px] h-auto object-contain">
@@ -50,27 +51,27 @@ const Header = () => {
                     >
                         <ul className="flex flex-col 2xl:flex-row lg:justify-end gap-x-6 md:items-center md:h-full text-center 2xl:text-left">
                             <li className="menu-item text-light-gray-cb whitespace-nowrap">
-                                <Link href="#" className="relative inline-block group">
+                                <Link href="#about" className="relative inline-block group">
                                     <span>
                                         Qui suis-je ?
                                     </span>
                                 </Link>
                             </li>
                             <li className="menu-item text-light-gray-cb whitespace-nowrap">
-                                <Link href="#" className="relative inline-block group">
+                                <Link href="#experiences" className="relative inline-block group">
                                     <span>
-                                        Mes formations
+                                        Mes expériences
                                     </span>
                                 </Link>
                             </li>
                             <li className="menu-item text-light-gray-cb whitespace-nowrap">
-                                <Link href="#" className="relative inline-block group">
+                                <Link href="#projects" className="relative inline-block group">
                                     <span>
-                                        Mon parcours
+                                        Mes projets
                                     </span>
                                 </Link>
                             </li>
-                            <Link href="#" passHref>
+                            <Link href="#contact" passHref>
                                 <Button as="a">Me contacter</Button>
                             </Link>
                         </ul>
