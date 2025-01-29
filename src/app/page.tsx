@@ -6,6 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectCard from '../components/projectCard';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import AsciiModal from '../components/AsciiModal';
+import React, { useState } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,12 +41,15 @@ const Home = () => {
         });
     }, []);
 
+    const [isAsciiModalOpen, setIsAsciiModalOpen] = useState(false); // Définir l'état pour la modale
+
     const projects = [
         {
             title: "Projet 1",
             description: "Description du premier projet.",
-            link: "https://lien-du-projet-1.com",
+            link: "#",
             imageUrl: "/geometric-shape.jpg",
+            onClick: () => setIsAsciiModalOpen(true), // Ouvre la modale
         },
         {
             title: "Projet 2",
@@ -109,22 +114,45 @@ const Home = () => {
                 </section>
 
                 {/* Projets */}
-                <section className="projects-section py-32 bg-light-gray-cb">
-                    <h2 id="prijects" className="text-3xl sm:text-4xl font-bold text-dark-gray-cb text-center mb-10">Mes Projets</h2>
-                    <div className="projects-scroll flex gap-8 overflow-x-auto">
-                        {projects.map((project, index) => (
-                            <ProjectCard
-                                key={index}
-                                title={project.title}
-                                description={project.description}
-                                link={project.link}
-                                imageUrl={project.imageUrl}
-                            />
-                        ))}
-                    </div>
-                </section>
+            <section className="projects-section py-32 bg-light-gray-cb">
+                <h2 id="projects" className="text-3xl sm:text-4xl font-bold text-dark-gray-cb text-center mb-10">Mes Projets</h2>
+                <div className="projects-scroll flex gap-8 overflow-x-auto px-6 sm:px-16">
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="project-card bg-light-gray-cb rounded-radius p-5 shadow-lg hover:scale-105 transition-transform duration-300 relative group max-w-md"
+                        >
+                            <div className="project-content flex flex-row items-center">
+                                {/* Image */}
+                                <img
+                                    src={project.imageUrl}
+                                    alt={project.title}
+                                    className="w-full h-48 object-cover rounded-radius"
+                                />
+                                <div className="flex-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-radius p-4 group-hover:visible">
+                                    <h3 className="text-white text-2xl font-semibold">{project.title}</h3>
+                                    <p className="text-white text-base mt-2">{project.description}</p>
+                                    <a
+                                        href="#"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            project.onClick();
+                                        }}
+                                        className="text-green-cb underline font-bold mt-4 hover:text-dark-green-cb"
+                                    >
+                                        Voir le projet
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
 
-                {/* Contact */}
+            {/* Modale ASCII */}
+            <AsciiModal isOpen={isAsciiModalOpen} onClose={() => setIsAsciiModalOpen(false)} />
+
+            {/* Contact */}
                 <section id="contact" className="contact-section py-32 bg-light-gray-cb">
                     <h2 id="contact" className="text-3xl sm:text-4xl font-bold text-dark-gray-cb text-center">Contactez-moi</h2>
                     <form className="mt-8 max-w-2xl mx-auto px-4 sm:px-0">
@@ -145,6 +173,7 @@ const Home = () => {
                         </button>
                     </form>
                 </section>
+
             <Footer/>
         </>
     );

@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export const horizontalScroll = (elementRef) => {
-    const scrollContainer = elementRef.current;
+    const scrollContainer = elementRef?.current;
 
     if (scrollContainer) {
         gsap.to(scrollContainer, {
@@ -18,5 +18,8 @@ export const horizontalScroll = (elementRef) => {
                 scrub: true, // Scroll fluide avec le défilement
             },
         });
+    } else {
+        console.warn("scrollContainer is not defined or not accessible");
     }
 };
+

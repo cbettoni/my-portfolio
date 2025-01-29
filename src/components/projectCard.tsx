@@ -1,19 +1,21 @@
 import '@/styles/globals.scss';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import { horizontalScroll } from '@/js/horizontalScroll';
+import { useRef } from 'react';
 
-export default function ProjectCard({ title, description, link, imageUrl }) {
+export default function ProjectCard({ title, description, link, imageUrl, onClick }) {
     const projectRef = useRef(null);
 
-    useEffect(() => {
-        horizontalScroll(projectRef); // Applique l'animation du scroll horizontal
-    }, []);
+    const handleProjectClick = (e) => {
+        e.preventDefault(); // Empêche le comportement par défaut du lien (redirection)
+        if (onClick) {
+            onClick(); // Ouvre la modale
+        }
+    };
 
     return (
         <motion.div
-            className="project-card bg-light-gray-cb rounded-radius p-5 shadow-lg hover:scale-105 transition-transform duration-300 relative group"
+            className="project-card bg-light-gray-cb rounded-radius p-5 shadow-lg hover:scale-105 transition-transform duration-300 relative group w-full max-w-[400px] h-[300px] sm:w-[75vw] sm:h-[50vh]"
             ref={projectRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -25,15 +27,14 @@ export default function ProjectCard({ title, description, link, imageUrl }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="flex-none mr-5 rounded-radius"
+                    className="flex-none relative w-full h-full rounded-radius"
                 >
                     <Image
                         src={imageUrl}
                         alt={title}
-                        width={500}
-                        height={300}
-                        layout="intrinsic"
-                        className="rounded-radius" // Garde l'image avec des bords arrondis
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-radius"
                     />
                 </motion.div>
 
@@ -43,8 +44,7 @@ export default function ProjectCard({ title, description, link, imageUrl }) {
                     <p className="text-white text-base mt-2">{description}</p>
                     <a
                         href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onClick={handleProjectClick}
                         className="text-green-cb underline font-bold mt-4 hover:text-dark-green-cb"
                     >
                         Voir le projet
