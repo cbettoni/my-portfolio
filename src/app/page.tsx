@@ -7,6 +7,7 @@ import ProjectCard from '../components/projectCard';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import AsciiModal from '../components/AsciiModal';
+import SnakeGameModal from '../components/SnakeGameModal';
 import React, { useState } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +43,7 @@ const Home = () => {
     }, []);
 
     const [isAsciiModalOpen, setIsAsciiModalOpen] = useState(false); // Définir l'état pour la modale
+    const [isSnakeGameOpen, setIsSnakeGameOpen] = useState(false);
 
     const projects = [
         {
@@ -56,6 +58,7 @@ const Home = () => {
             description: "Description du deuxième projet.",
             link: "https://lien-du-projet-2.com",
             imageUrl: "/geometric-shape.jpg",
+            onClick: () => setIsSnakeGameOpen(true),
         },
         {
             title: "Projet 3",
@@ -151,6 +154,7 @@ const Home = () => {
 
             {/* Modale ASCII */}
             <AsciiModal isOpen={isAsciiModalOpen} onClose={() => setIsAsciiModalOpen(false)} />
+            <SnakeGameModal isOpen={isSnakeGameOpen} onClose={() => setIsSnakeGameOpen(false)} />
 
             {/* Contact */}
                 <section id="contact" className="contact-section py-32 bg-light-gray-cb">
