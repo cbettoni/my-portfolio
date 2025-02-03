@@ -9,15 +9,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<ButtonProps> = ({ variant = "btn_primary", className, customStyles = "", ...props }) => {
     const baseClasses =
-        "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus:outline-none focus:ring-1 focus:ring-ring disabled:opacity-50";
+        "inline-flex items-center justify-center gap-2 text-sm rounded-full font-bold transition-colors focus:outline-none focus:ring-1 focus:ring-ring disabled:opacity-50";
 
     const variantClasses = {
         btn_primary:
-            "p-4 bg-green-cb text-light-gray-cb border-2 border-transparent hover:bg-dark-green-cb focus:border-dark-grey-cb focus:ring-4 focus:ring-dark-grey-cb",
+            "p-4 bg-green-cb text-dark-gray-cb border-2 border-transparent hover:bg-dark-green-cb focus:border-dark-grey-cb focus:ring-4 focus:ring-dark-grey-cb",
         btn_secondary:
-            "p-4 bg-green-cb text-dark-grey-cb border-2 border-dark-grey-cb hover:bg-dark-grey-cb hover:text-dark-grey-cb focus:ring-2 focus:ring-dark-grey-cb",
+            "p-4 bg-light-gray-cb text-dark-gray-cb border-2 border-dark-gray-cb hover:bg-dark-gray-cb hover:text-light-gray-cb focus:ring-2 focus:ring-gray-cb",
         btn_underline:
-            "p-2 text-green-cb underline underline-offset-8 decoration-2 hover:text-dark-grey-cb focus:dark-grey-cb focus:underline-none",
+            "p-2 text-dark-gray-cb underline underline-offset-8 decoration-2 hover:text-dark-green-cb focus:dark-gray-cb focus:underline-none",
     };
 
     const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${customStyles} ${className || ""}`;
