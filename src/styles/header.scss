@@ -33,7 +33,6 @@
 }
 
 .sticky-nav {
-  /*position: fixed;*/
   z-index: 100;
   padding: 1.2rem;
   box-sizing: border-box;
@@ -79,7 +78,6 @@
   }
 }
 
-/* Media Queries */
 @media screen and (max-width: 1750px) {
   .burger-menu {
     display: flex;
