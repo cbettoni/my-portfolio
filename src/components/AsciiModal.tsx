@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Dialog from './Dialog';
+import Button from '@/components/button';
 
 const AsciiModal = ({ isOpen, onClose }) => {
     const [image, setImage] = useState<File | null>(null);
@@ -170,12 +171,9 @@ const AsciiModal = ({ isOpen, onClose }) => {
                                 onChange={handleImageUpload}
                                 className="mb-4"
                             />
-                            <button
-                                onClick={handleConvertClick}
-                                className="px-4 py-2 bg-blue-500 text-white rounded"
-                            >
+                            <Button onClick={handleConvertClick} variant="btn_primary">
                                 Convert to ASCII
-                            </button>
+                            </Button>
                         </>
                     ) : (
                         <>
@@ -197,43 +195,28 @@ const AsciiModal = ({ isOpen, onClose }) => {
 
                             {/* Zoom buttons */}
                             <div className="flex space-x-2 mt-4">
-                                <button
-                                    onClick={handleZoomIn}
-                                    className="px-4 py-2 bg-blue-500 text-white rounded"
-                                >
+                                <Button onClick={handleZoomIn} variant="btn_primary">
                                     Zoom In
-                                </button>
-                                <button
-                                    onClick={handleZoomOut}
-                                    className="px-4 py-2 bg-blue-500 text-white rounded"
-                                >
+                                </Button>
+                                <Button onClick={handleZoomOut} variant="btn_primary">
                                     Zoom Out
-                                </button>
+                                </Button>
                             </div>
 
                             {/* Convert to Image button */}
-                            <button
-                                onClick={convertAsciiToImage}
-                                className="mt-4 px-4 py-2 bg-purple-500 text-white rounded"
-                            >
+                            <Button onClick={convertAsciiToImage} variant="btn_secondary" className="mt-4">
                                 Convert to Image
-                            </button>
+                            </Button>
 
                             {/* Re-upload button */}
-                            <button
-                                onClick={handleReupload}
-                                className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
-                            >
+                            <Button onClick={handleReupload} variant="btn_secondary" className="mt-4">
                                 Convert Another Image
-                            </button>
+                            </Button>
 
                             {/* Download button */}
-                            <button
-                                onClick={handleDownload}
-                                className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded"
-                            >
+                            <Button onClick={handleDownload} variant="btn_secondary" className="mt-4">
                                 Download ASCII Art
-                            </button>
+                            </Button>
                         </>
                     )}
                 </div>
