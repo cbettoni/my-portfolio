@@ -3,11 +3,12 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ProjectCard from '../components/projectCard';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import AsciiModal from '../components/AsciiModal';
 import SnakeGameModal from '../components/SnakeGameModal';
+import ImageGenerator from '../components/ImageGenerator';
+
 import React, { useState } from 'react';
 import Button from "@/components/button";
 import Link from "next/link";
@@ -34,8 +35,9 @@ const Home = () => {
 
     }, []);
 
-    const [isAsciiModalOpen, setIsAsciiModalOpen] = useState(false); // Définir l'état pour la modale
+    const [isAsciiModalOpen, setIsAsciiModalOpen] = useState(false);
     const [isSnakeGameOpen, setIsSnakeGameOpen] = useState(false);
+    const [isImageGeneratorOpen, setIsImageGeneratorOpen] = useState(false);
 
     const projects = [
         {
@@ -48,15 +50,16 @@ const Home = () => {
         {
             title: "Projet 2",
             description: "Viande à chien d'astie de bâtard de cossin de calvaire d'enfant d'chienne d'esprit de charrue de tabarnak d'ostifie.",
-            link: "https://lien-du-projet-2.com",
+            link: "#",
             imageUrl: "/geometric-shape.jpg",
             onClick: () => setIsSnakeGameOpen(true),
         },
         {
             title: "Projet 3",
             description: "Saint-sacrament de colon de purée de patente à gosse de verrat de torrieux de crime de ciboire de câline de saintes fesses.",
-            link: "https://lien-du-projet-3.com",
+            link: "#",
             imageUrl: "/geometric-shape.jpg",
+            onClick: () => setIsImageGeneratorOpen(true),
         },
     ];
 
@@ -172,6 +175,8 @@ const Home = () => {
             {/* Modale ASCII */}
             <AsciiModal isOpen={isAsciiModalOpen} onClose={() => setIsAsciiModalOpen(false)} />
             <SnakeGameModal isOpen={isSnakeGameOpen} onClose={() => setIsSnakeGameOpen(false)} />
+            <ImageGenerator isOpen={isImageGeneratorOpen} onClose={() => setIsImageGeneratorOpen(false)} />
+
 
             {/* Contact */}
                 <section id="contact" className="contact-section py-6 bg-light-gray-cb">
