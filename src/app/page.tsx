@@ -7,8 +7,6 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import AsciiModal from '../components/AsciiModal';
 import SnakeGameModal from '../components/SnakeGameModal';
-import ImageGenerator from '../components/ImageGenerator';
-
 import React, { useState } from 'react';
 import Button from "@/components/button";
 import Link from "next/link";
@@ -37,7 +35,6 @@ const Home = () => {
 
     const [isAsciiModalOpen, setIsAsciiModalOpen] = useState(false);
     const [isSnakeGameOpen, setIsSnakeGameOpen] = useState(false);
-    const [isImageGeneratorOpen, setIsImageGeneratorOpen] = useState(false);
 
     const projects = [
         {
@@ -45,7 +42,7 @@ const Home = () => {
             description: "Crucifix de cibole de ciboire de Jésus de plâtre de viande à chien de saint-ciboire de câline de bine de bout d'crisse de câlique de cibouleau.",
             link: "#",
             imageUrl: "/geometric-shape.jpg",
-            onClick: () => setIsAsciiModalOpen(true), // Ouvre la modale
+            onClick: () => setIsAsciiModalOpen(true),
         },
         {
             title: "Projet 2",
@@ -57,9 +54,9 @@ const Home = () => {
         {
             title: "Projet 3",
             description: "Saint-sacrament de colon de purée de patente à gosse de verrat de torrieux de crime de ciboire de câline de saintes fesses.",
-            link: "#",
+            link: "/portfolio",
             imageUrl: "/geometric-shape.jpg",
-            onClick: () => setIsImageGeneratorOpen(true),
+            onClick: undefined,
         },
     ];
 
@@ -154,29 +151,40 @@ const Home = () => {
                             <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
                                 <h3 className="text-white text-2xl font-bold">{project.title}</h3>
                                 <p className="text-white font-light text-base mt-2">{project.description}</p>
-                                <Button
-                                    variant="btn_primary"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        project.onClick();
-                                    }}
-                                    className="mt-4"
-                                >
-                                    Voir le projet
-                                </Button>
+
+                                {index === 2 ? (
+                                    // Pour le projet 3, on ouvre un lien dans un nouvel onglet
+                                    <Button
+                                        variant="btn_primary"
+                                        onClick={() => window.open(project.link, "_blank")}
+                                        className="mt-4"
+                                    >
+                                        Voir le projet
+                                    </Button>
+                                ) : (
+                                    // Pour les autres projets, ouvrir la modale
+                                    <Button
+                                        variant="btn_primary"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            project.onClick();
+                                        }}
+                                        className="mt-4"
+                                    >
+                                        Voir le projet
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     ))}
                 </div>
-
             </section>
+
 
 
             {/* Modale ASCII */}
             <AsciiModal isOpen={isAsciiModalOpen} onClose={() => setIsAsciiModalOpen(false)} />
             <SnakeGameModal isOpen={isSnakeGameOpen} onClose={() => setIsSnakeGameOpen(false)} />
-            <ImageGenerator isOpen={isImageGeneratorOpen} onClose={() => setIsImageGeneratorOpen(false)} />
-
 
             {/* Contact */}
                 <section id="contact" className="contact-section py-6 bg-light-gray-cb">
