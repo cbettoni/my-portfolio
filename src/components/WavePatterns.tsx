@@ -131,7 +131,7 @@ const WavePatterns = () => {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 z-[1] opacity-70 w-full h-full"
+            className="absolute inset-0 opacity-70 m-auto"
         />
     );
 };

@@ -14,6 +14,12 @@ import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+    const [activeTab, setActiveTab] = useState('experiences'); // Onglet actif, par défaut 'experiences'
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab); // Changer l'onglet actif lorsque l'utilisateur clique sur un onglet
+    };
+
     useEffect(() => {
         // Animation initiale du titre et sous-titre avec un effet de fondu et de montée
         const tl = gsap.timeline();
@@ -132,7 +138,7 @@ const Home = () => {
             <Header/>
 
                 {/* Section Hero */}
-            <section className="hero h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
+            <section className="hero h-screen z-10 flex flex-col justify-center items-center text-center relative overflow-hidden">
                 {/* Arrière-plan avec effet parallax */}
                 <div
                     className="hero-background absolute inset-0 w-full h-[120%] -top-[10%]"
@@ -168,7 +174,7 @@ const Home = () => {
 
 
             {/* À propos */}
-            <section className="about-section py-20 bg-light-gray-cb relative">
+            <section className="about-section py-20 bg-light-gray-cb relative w-full h-full">
                 <WavePatterns />
                 <div id="about" className="max-w-3xl mx-auto text-center px-4 sm:px-0 relative z-10">
                     <h2 className="text-3xl sm:text-4xl font-bold text-dark-gray-cb">À propos de moi</h2>
@@ -182,32 +188,131 @@ const Home = () => {
 
             {/* Expériences */}
             <section
-                className="experiences-section py-20 bg-dark-gray-cb relative bg-cover bg-center"
-                style={{ backgroundImage: "url('/geometric-shape.jpg')" }}
+                className="experiences-projects-section py-20 bg-dark-gray-cb relative"
+                style={{
+                    backgroundImage: "url('/geometric-shape.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                }}
             >
-                <h2 id="experiences" className="text-3xl sm:text-4xl font-bold text-light-gray-cb text-center relative z-10">
-                    Mes Expériences
-                </h2>
-                <div className="absolute inset-0 bg-black/70"></div>
+                {/* Fond noir transparent */}
+                <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
 
-                <div className="experience-card mx-4 mt-8 max-w-3xl lg:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
-                    <h3 className="text-2xl font-bold text-white">
-                        Développeuse Frontend | Gosselink digital
-                    </h3>
-                    <p className="mt-4 text-white">
-                        Depuis mars 2023, j'ai contribué à la création d'interfaces utilisateurs modernes et performantes en utilisant des technologies telles que React.js, Next.js, HTML, SCSS, Twig, VueJS, TypeScript, PHP, et Tailwind...
-                    </p>
+                {/* Contenu de la section */}
+                <div className="tabs-container text-center relative z-20">
+                    <Button
+                        className={`tab-button ${activeTab === 'experiences' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('experiences')}
+                        variant="btn_primary"
+                    >
+                        Expériences en développement
+                    </Button>
+
+                    <Button
+                        className={`tab-button ${activeTab === 'projects' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('projects')}
+                        variant="btn_primary"
+                    >
+                        Expériences en communication
+                    </Button>
                 </div>
 
-                <div className="experience-card mx-4 mt-8 max-w-3xl lg:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
-                    <h3 className="text-2xl font-bold text-white">
-                        Intégratrice Web | ITFacto
-                    </h3>
-                    <p className="mt-4 text-white">
-                        De janvier à mars 2023 - J'ai conçu, réalisé et mis en production des landing pages dynamiques en utilisant HTML5, CSS, Bootstrap, JS...
-                    </p>
-                </div>
+                {/* Contenu en fonction de l'onglet sélectionné */}
+                {activeTab === 'experiences' && (
+                    <div className="experiences-content relative z-20">
+                        <h2
+                            id="experiences"
+                            className="text-3xl sm:text-4xl font-bold text-light-gray-cb text-center"
+                        >
+                            Mes Expériences
+                        </h2>
+
+                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold text-white">
+                                Développeuse Frontend | Gosselink digital
+                            </h3>
+                            <h4 className="text-xl font-bold text-white mt-6">Rôles</h4>
+                            <ul className="text-white">
+                                <li>Conception, développement et mise en production d’interfaces Web et mobiles en respectant les maquettes Figma pour divers secteurs et clients.</li>
+                                <li>Intégration et theming Wordpress sur mesure.</li>
+                                <li>Maintenance et optimisation de sites web existants.</li>
+                                <li>Réalisations de sites sur mesure.</li>
+                                <li><span className="font-bold">Développement Front-End : </span>HTML, SCSS, Twig, VueJS, PHP, Tailwind, JavaScript, Next.js, TypeScript.</li>
+                                <li><span className="font-bold">Collaboration & Gestion de projet : </span>Git, Bitbucket, Jira, Confluence.</li>
+                            </ul>
+                            <h4 className="text-xl font-bold text-white mt-6">Réalisations</h4>
+                            <ul className="text-white">
+                                <li>Carrousels interactifs avec Slick et JS : Développement de carrousels dynamiques et personnalisés.</li>
+                                <li>Menus déroulants et navigation dynamique : Création de menus déroulants avec animations CSS et JavaScript, pour une navigation intuitive.</li>
+                                <li>Projets WordPress 100% custom : Développement de sites WordPress personnalisés.</li>
+                                <li>Création de blocs Gutenberg sur mesure : Développement de blocs variés pour la gestion de contenu par les utilisateurs finaux.</li>
+                                <li>Animations interactives (JavaScript, GSAP, CSS, SVG) : Création d'animations visuelles engageantes avec GSAP, CSS et SVG.</li>
+                                <li>Optimisation mobile et responsive : Design mobile-first pour garantir une expérience fluide sur tous les appareils.</li>
+                                <li>Amélioration des performances et SEO : Optimisation des temps de chargement et des images. Mise en œuvre des meilleures pratiques SEO.</li>
+                            </ul>
+                        </div>
+
+                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold text-white">
+                                Intégratrice Web | ITFacto
+                            </h3>
+                            <ul className="text-white">
+                                <li>Conception, réalisation et mise en production de landing pages (HTML5, CSS, Bootstrap, JS, Git, Gitlab).</li>
+                                <li>Conception et création de newsletters (HTML5, CSS).</li>
+                                <li>Création de maquettes de webdesign (Figma, Illustrator, Photoshop).</li>
+                            </ul>
+                        </div>
+                    </div>
+                )}
+
+                {activeTab === 'projects' && (
+                    <div className="projects-content relative z-20">
+                        <h2
+                            id="projects"
+                            className="text-3xl sm:text-4xl font-bold text-light-gray-cb text-center mb-10"
+                        >
+                            Mes Expériences en Communication et marketing
+                        </h2>
+                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold text-white">
+                                Développeuse Frontend | Gosselink digital
+                            </h3>
+                            <h4 className="text-xl font-bold text-white mt-6">Rôles</h4>
+                            <ul className="text-white">
+                                <li>Conception, développement et mise en production d’interfaces Web et mobiles en respectant les maquettes Figma pour divers secteurs et clients.</li>
+                                <li>Intégration et theming Wordpress sur mesure.</li>
+                                <li>Maintenance et optimisation de sites web existants.</li>
+                                <li>Réalisations de sites sur mesure.</li>
+                                <li><span className="font-bold">Développement Front-End : </span>HTML, SCSS, Twig, VueJS, PHP, Tailwind, JavaScript, Next.js, TypeScript.</li>
+                                <li><span className="font-bold">Collaboration & Gestion de projet : </span>Git, Bitbucket, Jira, Confluence.</li>
+                            </ul>
+                            <h4 className="text-xl font-bold text-white mt-6">Réalisations</h4>
+                            <ul className="text-white">
+                                <li>Carrousels interactifs avec Slick et JS : Développement de carrousels dynamiques et personnalisés.</li>
+                                <li>Menus déroulants et navigation dynamique : Création de menus déroulants avec animations CSS et JavaScript, pour une navigation intuitive.</li>
+                                <li>Projets WordPress 100% custom : Développement de sites WordPress personnalisés.</li>
+                                <li>Création de blocs Gutenberg sur mesure : Développement de blocs variés pour la gestion de contenu par les utilisateurs finaux.</li>
+                                <li>Animations interactives (JavaScript, GSAP, CSS, SVG) : Création d'animations visuelles engageantes avec GSAP, CSS et SVG.</li>
+                                <li>Optimisation mobile et responsive : Design mobile-first pour garantir une expérience fluide sur tous les appareils.</li>
+                                <li>Amélioration des performances et SEO : Optimisation des temps de chargement et des images. Mise en œuvre des meilleures pratiques SEO.</li>
+                            </ul>
+                        </div>
+
+                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold text-white">
+                                Intégratrice Web | ITFacto
+                            </h3>
+                            <ul className="text-white">
+                                <li>Conception, réalisation et mise en production de landing pages (HTML5, CSS, Bootstrap, JS, Git, Gitlab).</li>
+                                <li>Conception et création de newsletters (HTML5, CSS).</li>
+                                <li>Création de maquettes de webdesign (Figma, Illustrator, Photoshop).</li>
+                            </ul>
+                        </div>
+                    </div>
+                )}
             </section>
+
 
 
             {/* Projets */}
