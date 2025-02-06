@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import AsciiModal from '../components/AsciiModal';
+import WavePatterns from '../components/WavePatterns';
 import SnakeGameModal from '../components/SnakeGameModal';
 import Button from "@/components/button";
 import Link from "next/link";
@@ -38,7 +39,7 @@ const Home = () => {
 
         // Effet parallax sur l'arrière-plan
         gsap.to('.hero-background', {
-            yPercent: 50,
+            yPercent: 80,
             ease: 'none',
             scrollTrigger: {
                 trigger: '.hero',
@@ -167,18 +168,19 @@ const Home = () => {
 
 
             {/* À propos */}
-                <section className="about-section py-20 bg-light-gray-cb">
-                    <div id="about" className="max-w-3xl mx-auto text-center px-4 sm:px-0">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-dark-gray-cb">À propos de moi</h2>
-                        <p className="mt-6 px-4 text-dark-gray-cb">
-                            Après plusieurs années d’expérience dans les domaines de la communication et du marketing, j'ai entrepris une reconversion professionnelle en développement web afin de maîtriser les mécanismes des applications web et relever les défis techniques qui y sont liés. Mes expériences en tant qu'Intégratrice Web et Développeuse Front-End ont confirmé ma passion pour ce métier et mon désir constant d'apprendre et de me perfectionner.
-                            <br /><br />
-                            Créative, autonome et orientée résultats, je suis animée par le goût du challenge et l'acquisition continue de nouvelles compétences. Aujourd'hui, je souhaite mettre à profit mon expertise technique et mon expérience en communication pour contribuer efficacement au succès d'une équipe dynamique.
-                        </p>
-                    </div>
-                </section>
+            <section className="about-section py-20 bg-light-gray-cb relative">
+                <WavePatterns />
+                <div id="about" className="max-w-3xl mx-auto text-center px-4 sm:px-0 relative z-10">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-dark-gray-cb">À propos de moi</h2>
+                    <p className="mt-6 px-4 text-dark-gray-cb">
+                        Après plusieurs années d’expérience dans les domaines de la communication et du marketing, j'ai entrepris une reconversion professionnelle en développement web afin de maîtriser les mécanismes des applications web et relever les défis techniques qui y sont liés. Mes expériences en tant qu'Intégratrice Web et Développeuse Front-End ont confirmé ma passion pour ce métier et mon désir constant d'apprendre et de me perfectionner.
+                        <br /><br />
+                        Créative, autonome et orientée résultats, je suis animée par le goût du challenge et l'acquisition continue de nouvelles compétences. Aujourd'hui, je souhaite mettre à profit mon expertise technique et mon expérience en communication pour contribuer efficacement au succès d'une équipe dynamique.
+                    </p>
+                </div>
+            </section>
 
-                {/* Expériences */}
+            {/* Expériences */}
             <section
                 className="experiences-section py-20 bg-dark-gray-cb relative bg-cover bg-center"
                 style={{ backgroundImage: "url('/geometric-shape.jpg')" }}
