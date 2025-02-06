@@ -1,13 +1,12 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import AsciiModal from '../components/AsciiModal';
 import SnakeGameModal from '../components/SnakeGameModal';
-import React, { useState } from 'react';
 import Button from "@/components/button";
 import Link from "next/link";
 
@@ -15,23 +14,90 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
     useEffect(() => {
-        // Animation pour la section hero
-        gsap.from('.hero-title', {
+        // Animation initiale du titre et sous-titre avec un effet de fondu et de montée
+        const tl = gsap.timeline();
+
+        tl.from('.hero-title', {
             opacity: 0,
-            y: -50,
-            duration: 1.5,
-            ease: 'power3.out',
+            y: 100,
+            duration: 1.2,
+            ease: 'power4.out'
+        })
+            .from('.hero-subtitle', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
+            }, '-=0.8') // Commence légèrement avant la fin de l'animation du titre
+            .from('.hero-button', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.6');
+
+        // Effet parallax sur l'arrière-plan
+        gsap.to('.hero-background', {
+            yPercent: 50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
         });
 
-        gsap.from('.hero-subtitle', {
+        // Animation du gradient
+        gsap.to('.hero-gradient', {
+            opacity: 0.8,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: '+=500',
+                scrub: true
+            }
+        });
+
+        // Effet de disparition progressive du contenu au scroll
+        gsap.to('.hero-content', {
             opacity: 0,
-            y: 50,
-            duration: 1.5,
+            y: -50,
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'center center',
+                end: 'bottom center',
+                scrub: true
+            }
+        });
+
+        // Animation de la section "À propos de moi"
+        gsap.from('.about-section', {
+            opacity: 0,
+            y: 100,
+            duration: 1,
             ease: 'power3.out',
-            delay: 0.5,
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "bottom center",
+                toggleActions: "play none none reverse",
+            }
         });
 
     }, []);
+
+    const smoothScroll = (e) => {
+        e.preventDefault(); // Empêche le comportement par défaut de Next.js
+        const targetId = e.currentTarget.getAttribute("href").replace("#", "");
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop,
+                behavior: "smooth",
+            });
+        }
+    };
 
     const [isAsciiModalOpen, setIsAsciiModalOpen] = useState(false);
     const [isSnakeGameOpen, setIsSnakeGameOpen] = useState(false);
@@ -65,23 +131,37 @@ const Home = () => {
             <Header/>
 
                 {/* Section Hero */}
-            <section
-                className="hero h-screen flex flex-col justify-center items-center text-center px-6 sm:px-16 relative bg-cover bg-center"
-                style={{ backgroundImage: "url('/portrait-christelle.jpg')" }}
-            >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-300/60 to-blue-500/40 z-0"></div>
-                <h1 className="hero-title text-4xl sm:text-6xl font-extrabold text-white z-10">Bonjour, je suis Christelle Bettoni</h1>
-                <p className="hero-subtitle text-xl sm:text-2xl text-white mt-6 z-10">Développeuse Frontend | Passionnée par l'UX/UI</p>
-                <div className="my-6 z-10">
-                    <Link href="#projects" passHref>
-                        <Button
-                            type="submit"
-                            variant="btn_secondary"
-                            as="a"
-                        >
-                            Voir mes projets
-                        </Button>
-                    </Link>
+            <section className="hero h-screen flex flex-col justify-center items-center text-center relative overflow-hidden">
+                {/* Arrière-plan avec effet parallax */}
+                <div
+                    className="hero-background absolute inset-0 w-full h-[120%] -top-[10%]"
+                    style={{
+                        backgroundImage: "url('/portrait-christelle.jpg')",
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                    }}
+                ></div>
+
+                {/* Gradient overlay amélioré */}
+                <div className="hero-gradient absolute inset-0 bg-gradient-to-r from-yellow-300/60 to-blue-500/40 opacity-60 z-[1]"></div>
+
+                {/* Contenu principal */}
+                <div className="hero-content relative z-[2] px-6 sm:px-16">
+                    <h1 className="hero-title text-4xl sm:text-6xl font-extrabold text-white mb-6">
+                        Bonjour, je suis Christelle Bettoni
+                    </h1>
+                    <p className="hero-subtitle text-xl sm:text-2xl text-white mb-8">
+                        Développeuse Frontend | Passionnée par l'UX/UI
+                    </p>
+                    <div className="hero-button">
+                        <Link href="#projects" passHref legacyBehavior>
+                            <a onClick={smoothScroll}>
+                                <Button type="submit" variant="btn_secondary" as="span">
+                                    Voir mes projets
+                                </Button>
+                            </a>
+                        </Link>
+                    </div>
                 </div>
             </section>
 
