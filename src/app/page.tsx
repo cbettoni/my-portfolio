@@ -264,80 +264,86 @@ const Home = () => {
 
                 {activeTab === 'comm' && (
                     <div className="projects-content relative z-20">
-                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
-                            <h3 className="text-2xl font-bold text-white">
-                                Développeuse Frontend | Gosselink digital
+                        <div className="experience-card text-white mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold">
+                                Communication et marketing
                             </h3>
-                            <h4 className="text-xl font-bold text-white mt-6">Rôles</h4>
-                            <ul className="text-white">
-                                <li>Conception, développement et mise en production d’interfaces Web et mobiles en respectant les maquettes Figma pour divers secteurs et clients.</li>
-                                <li>Intégration et theming Wordpress sur mesure.</li>
-                                <li>Maintenance et optimisation de sites web existants.</li>
-                                <li>Réalisations de sites sur mesure.</li>
-                                <li><span className="font-bold">Développement Front-End : </span>HTML, SCSS, Twig, VueJS, PHP, Tailwind, JavaScript, Next.js, TypeScript.</li>
-                                <li><span className="font-bold">Collaboration & Gestion de projet : </span>Git, Bitbucket, Jira, Confluence.</li>
-                            </ul>
-                            <h4 className="text-xl font-bold text-white mt-6">Réalisations</h4>
-                            <ul className="text-white">
-                                <li>Carrousels interactifs avec Slick et JS : Développement de carrousels dynamiques et personnalisés.</li>
-                                <li>Menus déroulants et navigation dynamique : Création de menus déroulants avec animations CSS et JavaScript, pour une navigation intuitive.</li>
-                                <li>Projets WordPress 100% custom : Développement de sites WordPress personnalisés.</li>
-                                <li>Création de blocs Gutenberg sur mesure : Développement de blocs variés pour la gestion de contenu par les utilisateurs finaux.</li>
-                                <li>Animations interactives (JavaScript, GSAP, CSS, SVG) : Création d'animations visuelles engageantes avec GSAP, CSS et SVG.</li>
-                                <li>Optimisation mobile et responsive : Design mobile-first pour garantir une expérience fluide sur tous les appareils.</li>
-                                <li>Amélioration des performances et SEO : Optimisation des temps de chargement et des images. Mise en œuvre des meilleures pratiques SEO.</li>
-                            </ul>
+                            <h4 className="font-light mt-4">2020 - 2021</h4>
+                            <p className="font-extrabold">La Maison du Violon (Montréal, Quebec)</p>
+                            <li>Gestionnaire Marketing / e-commerce</li>
+                            <p>Conception et mise en place de la stratégie marketing et de l’identité graphique.</p>
+                            <p>Utilisation de HTML et CSS pour modification du contenu de CMS Lightspeed</p>
+
+                            <h4 className="font-light mt-4">2018 - 2020</h4>
+                            <p className="font-extrabold">Spöka (Paris)</p>
+                            <li>Community manager & graphiste</li>
+                            <p>Création de contenus et gestion de médias sociaux (RED by SFR, Monster France, etc...)</p>
+
+                            <h4 className="font-light mt-4">2014 - 2018</h4>
+                            <p className="font-extrabold">CCM Benchmark groupe Le Figaro (Paris)</p>
+                            <li>Community Manager</li>
+                            <p>Création de contenus et gestion de médias sociaux.</p>
+                            <p>Conception de Newsletter en HTML et CSS avec utilisation de Dreamweaver</p>
+
                         </div>
 
-                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
-                            <h3 className="text-2xl font-bold text-white">
-                                Intégratrice Web | ITFacto
+                        <div className="experience-card text-white mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold">
+                                Graphisme
                             </h3>
-                            <ul className="text-white">
-                                <li>Conception, réalisation et mise en production de landing pages (HTML5, CSS, Bootstrap, JS, Git, Gitlab).</li>
-                                <li>Conception et création de newsletters (HTML5, CSS).</li>
-                                <li>Création de maquettes de webdesign (Figma, Illustrator, Photoshop).</li>
-                            </ul>
+                            <h4 className="font-light">2007 - 2013</h4>
+                            <p className="font-extrabold">Graphiste Freelance (Paris)</p>
+                            <p>Création de visuels pour supports publicitaires</p>
+                            <p>(CCM Benchmark Group, Publicislive, Lever de rideau, Belmar SA, etc...)</p>
+
                         </div>
                     </div>
                 )}
 
                 {activeTab === 'formation' && (
                     <div className="projects-content relative z-20">
-                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
-                            <h3 className="text-2xl font-bold text-white">
-                                Développeuse Frontend | Gosselink digital
+                        <div className="experience-card text-white mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold">
+                                Développement web
                             </h3>
-                            <h4 className="text-xl font-bold text-white mt-6">Rôles</h4>
-                            <ul className="text-white">
-                                <li>Conception, développement et mise en production d’interfaces Web et mobiles en respectant les maquettes Figma pour divers secteurs et clients.</li>
-                                <li>Intégration et theming Wordpress sur mesure.</li>
-                                <li>Maintenance et optimisation de sites web existants.</li>
-                                <li>Réalisations de sites sur mesure.</li>
-                                <li><span className="font-bold">Développement Front-End : </span>HTML, SCSS, Twig, VueJS, PHP, Tailwind, JavaScript, Next.js, TypeScript.</li>
-                                <li><span className="font-bold">Collaboration & Gestion de projet : </span>Git, Bitbucket, Jira, Confluence.</li>
-                            </ul>
-                            <h4 className="text-xl font-bold text-white mt-6">Réalisations</h4>
-                            <ul className="text-white">
-                                <li>Carrousels interactifs avec Slick et JS : Développement de carrousels dynamiques et personnalisés.</li>
-                                <li>Menus déroulants et navigation dynamique : Création de menus déroulants avec animations CSS et JavaScript, pour une navigation intuitive.</li>
-                                <li>Projets WordPress 100% custom : Développement de sites WordPress personnalisés.</li>
-                                <li>Création de blocs Gutenberg sur mesure : Développement de blocs variés pour la gestion de contenu par les utilisateurs finaux.</li>
-                                <li>Animations interactives (JavaScript, GSAP, CSS, SVG) : Création d'animations visuelles engageantes avec GSAP, CSS et SVG.</li>
-                                <li>Optimisation mobile et responsive : Design mobile-first pour garantir une expérience fluide sur tous les appareils.</li>
-                                <li>Amélioration des performances et SEO : Optimisation des temps de chargement et des images. Mise en œuvre des meilleures pratiques SEO.</li>
-                            </ul>
+                            <h4 className="font-light">2022</h4>
+                            <p className="font-extrabold">Le Wagon batch #940</p>
+                            <p>Bootcamp intensif pour apprendre
+                                HTML, CSS, Bootstrap, JavaScript ES6,
+                                SQL, git, GitHub, Heroku et Ruby on Rails.</p>
+
+                            <h3 className="text-2xl font-bold mt-6">
+                                Programmation informatique
+                            </h3>
+                            <h4 className="font-light">2022</h4>
+                            <p className="font-extrabold">Ecole 42 (Piscine)</p>
+                            <p>Création de visuels pour supports publicitaires</p>
+                            <p>(CCM Benchmark Group, Publicislive, Lever de rideau, Belmar SA, etc...)Apprentissage des languages Shell et C.</p>
+
                         </div>
 
-                        <div className="experience-card mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
-                            <h3 className="text-2xl font-bold text-white">
-                                Intégratrice Web | ITFacto
+                        <div className="experience-card text-white mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold">
+                                Licence Community Managment
                             </h3>
-                            <ul className="text-white">
-                                <li>Conception, réalisation et mise en production de landing pages (HTML5, CSS, Bootstrap, JS, Git, Gitlab).</li>
-                                <li>Conception et création de newsletters (HTML5, CSS).</li>
-                                <li>Création de maquettes de webdesign (Figma, Illustrator, Photoshop).</li>
-                            </ul>
+                            <h4 className="font-light">2014 - 2015</h4>
+                            <p className="font-extrabold">Doranco</p>
+                            <p>Création de visuels pour supports publicitaires</p>
+                            <p>Apprentissage en alternance du métier de
+                                community manager et de la création et gestion des CMS.</p>
+
+                        </div>
+
+                        <div className="experience-card text-white mx-4 mt-8 max-w-3xl sm:mx-auto bg-white/20 backdrop-blur-lg rounded-lg shadow-lg p-8">
+                            <h3 className="text-2xl font-bold">
+                                BTS Graphiste
+                            </h3>
+                            <h4 className="font-light">2005 - 2008</h4>
+                            <p className="font-extrabold">EAP prépa-seine/info-seine</p>
+                            <p>écolé préparatoire d’arts plastique et obten
+                                - tion du BTS de graphiste.
+                                Conception d’un portfolio en HTML (utilisation de Dreamweaver)</p>
+
                         </div>
                     </div>
                 )}

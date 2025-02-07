@@ -10,7 +10,7 @@ export default function Footer() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                © {currentYear} Mon Portfolio. Tous droits réservés.
+                © {currentYear} Portfolio de Christelle Bettoni. Tous droits réservés.
             </motion.p>
         </footer>
     );
