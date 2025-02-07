@@ -10,16 +10,16 @@ export const horizontalScroll = (elementRef) => {
 
     if (scrollContainer) {
         gsap.to(scrollContainer, {
-            x: "-100%", // Scroll vers la gauche sur l'axe X
+            x: '-100%', // Scroll vers la gauche sur l'axe X
             scrollTrigger: {
                 trigger: scrollContainer,
-                start: "top center",
-                end: "bottom center",
+                start: 'top center',
+                end: 'bottom center',
                 scrub: true, // Scroll fluide avec le défilement
             },
         });
     } else {
-        console.warn("scrollContainer is not defined or not accessible");
+        console.warn('scrollContainer is not defined or not accessible');
     }
 };
 

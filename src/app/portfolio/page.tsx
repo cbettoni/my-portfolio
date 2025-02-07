@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Instagram, Mail, ChevronLeft, ChevronRight } from 'lucide-react';

@@ -122,11 +122,11 @@ const AsciiModal = ({ isOpen, onClose }) => {
             ctx.fillStyle = 'black'; // Couleur du texte
 
             // Dessiner l'ASCII Art sur le canevas
-            let x = 0;
+            const x = 0;
             let y = fontSize; // Position de départ pour le texte (en bas de l'image)
 
             const lines = asciiArt.split('\n');
-            lines.forEach((line, index) => {
+            lines.forEach((line) => {
                 // Dessiner chaque ligne de texte
                 ctx.fillText(line, x, y);
 

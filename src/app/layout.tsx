@@ -1,7 +1,6 @@
 // app/layout.tsx
 import '@/styles/globals.scss';
 import localFont from 'next/font/local';
-import Head from "next/head";
 
 const commuters = localFont({
     src: [
@@ -26,7 +25,7 @@ const commuters = localFont({
             style: 'normal',
         },
     ],
-})
+});
 
 export const metadata = {
     title: 'Portfolio de Christelle Bettoni',

@@ -8,8 +8,8 @@ import Footer from '../components/footer';
 import AsciiModal from '../components/AsciiModal';
 import WavePatterns from '../components/WavePatterns';
 import SnakeGameModal from '../components/SnakeGameModal';
-import Button from "@/components/button";
-import Link from "next/link";
+import Button from '@/components/button';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,9 +85,9 @@ const Home = () => {
             duration: 1,
             ease: 'power3.out',
             scrollTrigger: {
-                trigger: ".hero",
-                start: "bottom center",
-                toggleActions: "play none none reverse",
+                trigger: '.hero',
+                start: 'bottom center',
+                toggleActions: 'play none none reverse',
             }
         });
 
@@ -95,13 +95,13 @@ const Home = () => {
 
     const smoothScroll = (e) => {
         e.preventDefault(); // Empêche le comportement par défaut de Next.js
-        const targetId = e.currentTarget.getAttribute("href").replace("#", "");
+        const targetId = e.currentTarget.getAttribute('href').replace('#', '');
         const targetElement = document.getElementById(targetId);
 
         if (targetElement) {
             window.scrollTo({
                 top: targetElement.offsetTop,
-                behavior: "smooth",
+                behavior: 'smooth',
             });
         }
     };
@@ -111,24 +111,24 @@ const Home = () => {
 
     const projects = [
         {
-            title: "Pixel to ASCII",
-            description: "Convertissez vos images en oeuvres ASCII uniques en un clic ! Importez une image et téléchargez le résultat instantanément.",
-            link: "#",
-            imageUrl: "/perlin.png",
+            title: 'Pixel to ASCII',
+            description: 'Convertissez vos images en oeuvres ASCII uniques en un clic ! Importez une image et téléchargez le résultat instantanément.',
+            link: '#',
+            imageUrl: '/perlin.png',
             onClick: () => setIsAsciiModalOpen(true),
         },
         {
-            title: "Snake Revival",
+            title: 'Snake Revival',
             description: "Revivez la magie du classique Snake, un jeu simple et addictif qui vous plonge dans l'ère des premiers écrans.",
-            link: "#",
-            imageUrl: "/snake.png",
+            link: '#',
+            imageUrl: '/snake.png',
             onClick: () => setIsSnakeGameOpen(true),
         },
         {
-            title: "Minimalist Photographer Portfolio",
-            description: "Un template React épuré, parfait pour mettre en valeur vos créations photographiques avec élégance et simplicité.",
-            link: "/portfolio",
-            imageUrl: "/photographer.png",
+            title: 'Minimalist Photographer Portfolio',
+            description: 'Un template React épuré, parfait pour mettre en valeur vos créations photographiques avec élégance et simplicité.',
+            link: '/portfolio',
+            imageUrl: '/photographer.png',
             onClick: undefined,
         },
     ];
@@ -186,9 +186,9 @@ const Home = () => {
                 className="experiences-projects-section py-20 bg-dark-gray-cb relative"
                 style={{
                     backgroundImage: "url('/geometric-shape.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
                 }}
             >
                 <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
@@ -377,7 +377,7 @@ const Home = () => {
                                     // Pour le projet 3, on ouvre un lien dans un nouvel onglet
                                     <Button
                                         variant="btn_primary"
-                                        onClick={() => window.open(project.link, "_blank")}
+                                        onClick={() => window.open(project.link, '_blank')}
                                         className="mt-4"
                                     >
                                         Voir le projet

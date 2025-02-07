@@ -1,11 +1,11 @@
-"use client";
+'use client';
 import React from 'react';
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import '@/styles/header.scss';
 import { initNavbar } from '@/js/navbar';
-import Button from "./button";
+import Button from './button';
 
 const Header = () => {
 
@@ -33,7 +33,7 @@ const Header = () => {
                         </Link>
 
                         <button
-                            className={`block burger-menu ${isMenuOpen ? "active" : ""}`}
+                            className={`block burger-menu ${isMenuOpen ? 'active' : ''}`}
                             id="toggleMenuButton"
                             onClick={toggleMenu}
                         >
@@ -46,7 +46,7 @@ const Header = () => {
                     <nav
                         id="navMenu"
                         className={`${
-                            isMenuOpen ? "flex" : "hidden"
+                            isMenuOpen ? 'flex' : 'hidden'
                         } transition delay-75 2xl:flex 2xl:flex-grow 2xl:justify-end pt-5 md:pt-0 items-center`}
                     >
                         <ul className="flex flex-col 2xl:flex-row lg:justify-end gap-x-6 md:items-center md:h-full text-center 2xl:text-left">
