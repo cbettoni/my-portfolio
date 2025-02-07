@@ -72,13 +72,13 @@ const Portfolio = () => {
     const Navigation = () => (
         <nav className={`fixed top-0 left-0 h-full bg-white w-64 transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} 
       transition-transform duration-300 ease-in-out md:translate-x-0 border-r border-gray-100 z-50`}>
-            <div className="p-8 h-full flex flex-col">
+            <div className="px-8 py-12 h-full flex flex-col">
                 <button onClick={() => setIsMenuOpen(false)} className="md:hidden absolute top-4 right-4">
                     <X size={24} className="text-gray-400" />
                 </button>
 
                 <div className="mb-12">
-                    <h1 className="font-light text-2xl tracking-wider mb-2">BÉRÉNICE VERGÉ</h1>
+                    <h1 className="font-light text-2xl tracking-wider mb-2">Jane Doe</h1>
                     <p className="text-gray-400 text-sm">Photographe Mode & Portrait</p>
                 </div>
 
@@ -127,69 +127,75 @@ const Portfolio = () => {
         };
 
         return (
-            <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
-                <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-                    <div className="relative">
-                        <div className="relative aspect-w-16 aspect-h-9 overflow-hidden">
-                            <div
-                                className="flex transition-transform duration-500 ease-out"
-                                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                            >
-                                {project.images.map((image, index) => (
+            <div className="fixed inset-0 bg-black bg-opacity-75 z-[100] flex items-center justify-center">
+                <div className="bg-white w-full max-w-5xl relative h-[85vh] flex flex-col">
+                    {/* Bouton fermeture */}
+                    <button
+                        onClick={() => {
+                            onClose();
+                            setCurrentSlide(0);
+                        }}
+                        className="absolute right-4 top-4 text-white hover:text-gray-300 z-[102]"
+                    >
+                        <X size={24} />
+                    </button>
+
+                    {/* Carousel */}
+                    <div className="relative flex-1 bg-black overflow-hidden">
+                        <div
+                            className="absolute inset-0 flex transition-transform duration-500 ease-in-out"
+                            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                        >
+                            {project.images.map((image, index) => (
+                                <div key={index} className="flex-shrink-0 w-full h-full">
                                     <img
-                                        key={index}
                                         src={image}
                                         alt={`${project.title} - Image ${index + 1}`}
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-contain"
                                     />
-                                ))}
-                            </div>
-
-                            <button
-                                onClick={prevSlide}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-opacity"
-                            >
-                                <ChevronLeft size={24} />
-                            </button>
-
-                            <button
-                                onClick={nextSlide}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-opacity"
-                            >
-                                <ChevronRight size={24} />
-                            </button>
+                                </div>
+                            ))}
                         </div>
 
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                        {/* Navigation buttons */}
+                        <button
+                            onClick={prevSlide}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-black p-3 rounded-full hover:bg-opacity-75 transition-opacity z-[101]"
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
+
+                        <button
+                            onClick={nextSlide}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-black p-3 rounded-full hover:bg-opacity-75 transition-opacity z-[101]"
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+
+
+                        {/* Indicateurs de slides */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3 z-[101]">
                             {project.images.map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setCurrentSlide(index)}
-                                    className={`w-2 h-2 rounded-full transition-all ${
-                                        currentSlide === index ? 'bg-white' : 'bg-white bg-opacity-50'
+                                    className={`w-2.5 h-2.5 rounded-full transition-all ${
+                                        currentSlide === index
+                                            ? 'bg-white scale-100'
+                                            : 'bg-white/50 scale-75 hover:scale-90'
                                     }`}
                                 />
                             ))}
                         </div>
                     </div>
 
-                    <div className="p-6">
-                        <div className="flex justify-between items-start mb-4">
-                            <div>
-                                <h2 className="text-2xl font-light tracking-wider mb-2">{project.title}</h2>
-                                <p className="text-sm text-gray-400">{project.category}</p>
-                            </div>
-                            <button
-                                onClick={() => {
-                                    onClose();
-                                    setCurrentSlide(0);
-                                }}
-                                className="text-gray-400 hover:text-black"
-                            >
-                                <X size={24} />
-                            </button>
+                    {/* Bandeau d'information */}
+                    <div className="bg-white px-8 py-6 border-t border-gray-100">
+                        <div className="max-w-3xl mx-auto">
+                            <h2 className="text-2xl font-light tracking-wider mb-2">{project.title}</h2>
+                            <p className="text-sm text-gray-400 mb-3">{project.category}</p>
+                            <p className="text-gray-600 leading-relaxed">{project.description}</p>
                         </div>
-                        <p className="text-gray-600">{project.description}</p>
                     </div>
                 </div>
             </div>
@@ -197,7 +203,7 @@ const Portfolio = () => {
     };
 
     const PortfolioGrid = () => (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 py-12">
             {portfolioItems.map((item) => (
                 <div
                     key={item.id}
@@ -205,19 +211,19 @@ const Portfolio = () => {
                         setSelectedProject(item);
                         setIsModalOpen(true);
                     }}
-                    className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                    className="relative group cursor-pointer rounded-xl overflow-hidden shadow-xl transition-all duration-500 transform hover:scale-105"
                 >
-                    <div className="aspect-w-3 aspect-h-4">
+                    <div className="w-full h-80 overflow-hidden rounded-xl">
                         <img
                             src={item.images[0]}
                             alt={item.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                     </div>
-                    <div className="p-4">
-                        <h3 className="font-light tracking-wider text-lg mb-1">{item.title}</h3>
-                        <p className="text-sm text-gray-400 mb-2">{item.category}</p>
-                        <p className="text-gray-600 text-sm line-clamp-2">{item.description}</p>
+
+                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-6 rounded-b-xl transition-all duration-300 opacity-0 group-hover:opacity-100">
+                        <h3 className="font-semibold text-2xl text-white mb-2">{item.title}</h3>
+                        <p className="text-sm text-gray-300">{item.category}</p>
                     </div>
                 </div>
             ))}
@@ -225,22 +231,29 @@ const Portfolio = () => {
     );
 
     const About = () => (
-        <div className="max-w-2xl mx-auto p-8">
+        <div className="max-w-2xl mx-auto px-6 py-12">
             <h2 className="font-light text-2xl mb-6 tracking-wider">À PROPOS</h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 leading-relaxed mb-6">
                 Photographe de mode basée à Paris, je collabore avec les plus grandes maisons de luxe
                 et magazines de mode. Mon approche minimaliste et mon attention aux détails créent
                 des images intemporelles qui capturent l'essence de chaque sujet.
             </p>
+            <div className="aspect-w-16 aspect-h-9 mb-6">
+                <img
+                    src="/berenice/placeholder.jpg"
+                    alt="Photographe en action"
+                    className="w-full h-full object-cover rounded-lg shadow-lg"
+                />
+            </div>
         </div>
     );
 
     const Contact = () => (
-        <div className="max-w-2xl mx-auto p-8">
+        <div className="max-w-2xl mx-auto px-6 py-12">
             <h2 className="font-light text-2xl mb-6 tracking-wider">CONTACT</h2>
             <div className="space-y-4">
                 <p className="text-gray-600">Pour toute demande de collaboration ou information:</p>
-                <p className="text-gray-800">contact@emmadubois.com</p>
+                <p className="text-gray-800">contact@janedoe.com</p>
                 <p className="text-gray-800">+33 6 12 34 56 78</p>
             </div>
         </div>

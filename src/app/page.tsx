@@ -111,22 +111,22 @@ const Home = () => {
 
     const projects = [
         {
-            title: "Projet 1",
-            description: "Crucifix de cibole de ciboire de Jésus de plâtre de viande à chien de saint-ciboire de câline de bine de bout d'crisse de câlique de cibouleau.",
+            title: "Pixel to ASCII",
+            description: "Convertissez vos images en oeuvres ASCII uniques en un clic ! Importez une image et téléchargez le résultat instantanément.",
             link: "#",
             imageUrl: "/geometric-shape.jpg",
             onClick: () => setIsAsciiModalOpen(true),
         },
         {
-            title: "Projet 2",
-            description: "Viande à chien d'astie de bâtard de cossin de calvaire d'enfant d'chienne d'esprit de charrue de tabarnak d'ostifie.",
+            title: "Snake Revival",
+            description: "Revivez la magie du classique Snake, un jeu simple et addictif qui vous plonge dans l'ère des premiers écrans.",
             link: "#",
             imageUrl: "/geometric-shape.jpg",
             onClick: () => setIsSnakeGameOpen(true),
         },
         {
-            title: "Projet 3",
-            description: "Saint-sacrament de colon de purée de patente à gosse de verrat de torrieux de crime de ciboire de câline de saintes fesses.",
+            title: "Minimalist Photographer Portfolio",
+            description: "Un template React épuré, parfait pour mettre en valeur vos créations photographiques avec élégance et simplicité.",
             link: "/portfolio",
             imageUrl: "/geometric-shape.jpg",
             onClick: undefined,
