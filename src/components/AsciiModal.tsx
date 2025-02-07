@@ -161,7 +161,7 @@ const AsciiModal = ({ isOpen, onClose }) => {
             title="Convert Image to ASCII"
             className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
         >
-            <div className="bg-white p-6 rounded-lg relative w-[75vw] h-[75vh] overflow-hidden flex flex-col">
+            <div className="bg-light-gray-cb p-6 rounded-lg relative w-[75vw] h-[75vh] overflow-hidden flex flex-col">
                 <div className="flex flex-col items-center justify-center h-full overflow-hidden">
                     {!asciiArt ? (
                         <>
@@ -172,13 +172,13 @@ const AsciiModal = ({ isOpen, onClose }) => {
                                 className="mb-4"
                             />
                             <Button onClick={handleConvertClick} variant="btn_primary">
-                                Convert to ASCII
+                                Convertir en art ASCII
                             </Button>
                         </>
                     ) : (
                         <>
                             {/* Display ASCII art */}
-                            <div className="overflow-auto flex-1 w-full flex justify-center">
+                            <div className="overflow-auto bg-dark-gray-cb text-white flex justify-center">
                                 <pre style={{
                                     whiteSpace: 'pre-wrap',
                                     wordWrap: 'break-word',

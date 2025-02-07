@@ -114,21 +114,21 @@ const Home = () => {
             title: "Pixel to ASCII",
             description: "Convertissez vos images en oeuvres ASCII uniques en un clic ! Importez une image et téléchargez le résultat instantanément.",
             link: "#",
-            imageUrl: "/geometric-shape.jpg",
+            imageUrl: "/perlin.png",
             onClick: () => setIsAsciiModalOpen(true),
         },
         {
             title: "Snake Revival",
             description: "Revivez la magie du classique Snake, un jeu simple et addictif qui vous plonge dans l'ère des premiers écrans.",
             link: "#",
-            imageUrl: "/geometric-shape.jpg",
+            imageUrl: "/snake.png",
             onClick: () => setIsSnakeGameOpen(true),
         },
         {
             title: "Minimalist Photographer Portfolio",
             description: "Un template React épuré, parfait pour mettre en valeur vos créations photographiques avec élégance et simplicité.",
             link: "/portfolio",
-            imageUrl: "/geometric-shape.jpg",
+            imageUrl: "/photographer.png",
             onClick: undefined,
         },
     ];
@@ -195,7 +195,7 @@ const Home = () => {
                 <h2 className="relative mb-10 z-10 text-3xl sm:text-4xl font-bold text-light-gray-cb text-center">
                     Mes Expériences et Formations
                 </h2>
-                <div className="tabs-container text-center relative z-20">
+                <div className="tabs-container justify-center mb-8 gap-10 flex flex-col w-fit mx-auto sm:flex-row text-center relative z-20">
                     <Button
                         className={`tab-button ${activeTab === 'experiences' ? 'active' : ''}`}
                         onClick={() => handleTabClick('web')}
@@ -361,7 +361,7 @@ const Home = () => {
                                 className="absolute inset-0 w-full h-full object-cover rounded-2xl"
                             />
                             {/* Overlay sombre au survol */}
-                            <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-opacity duration-300"></div>
+                            <div className="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-90 transition-opacity duration-300"></div>
                             {/* Contenu */}
                             <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
                                 <h3 className="text-white text-2xl font-bold">{project.title}</h3>

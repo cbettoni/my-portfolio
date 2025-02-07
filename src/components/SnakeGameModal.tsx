@@ -196,7 +196,7 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
                     </Button>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">
-                    Use arrow keys to control the snake
+                    Utiliser les fleches directionnelles de votre clavier
                 </p>
             </div>
         </Dialog>
