@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Instagram, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 const Portfolio = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -148,10 +149,12 @@ const Portfolio = () => {
                         >
                             {project.images.map((image, index) => (
                                 <div key={index} className="flex-shrink-0 w-full h-full">
-                                    <img
+                                    <Image
                                         src={image}
                                         alt={`${project.title} - Image ${index + 1}`}
                                         className="w-full h-full object-contain"
+                                        width={300}
+                                        height={200}
                                     />
                                 </div>
                             ))}
@@ -213,10 +216,13 @@ const Portfolio = () => {
                     }}
                     className="relative group cursor-pointer rounded-xl overflow-hidden shadow-xl transition-all duration-500 transform hover:scale-105"
                 >
-                    <div className="w-full h-80 overflow-hidden rounded-xl">
-                        <img
+                    <div className="w-full h-full overflow-hidden rounded-xl">
+                        <Image
                             src={item.images[0]}
                             alt={item.title}
+                            layout="responsive"
+                            width={800}
+                            height={600}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                     </div>
@@ -239,9 +245,12 @@ const Portfolio = () => {
                 des images intemporelles qui capturent l'essence de chaque sujet.
             </p>
             <div className="aspect-w-16 aspect-h-9 mb-6">
-                <img
+                <Image
                     src="/berenice/placeholder.jpg"
                     alt="Photographe en action"
+                    layout="responsive"
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover rounded-lg shadow-lg"
                 />
             </div>

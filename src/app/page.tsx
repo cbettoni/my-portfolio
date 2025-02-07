@@ -10,6 +10,7 @@ import WavePatterns from '../components/WavePatterns';
 import SnakeGameModal from '../components/SnakeGameModal';
 import Button from '@/components/button';
 import Link from 'next/link';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -361,10 +362,12 @@ const Home = () => {
                             className="project-card rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 relative group w-80 h-80 overflow-hidden"
                         >
                             {/* Image en background */}
-                            <img
+                            <Image
                                 src={project.imageUrl}
                                 alt={project.title}
-                                className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+                                layout="fill"
+                                objectFit="cover"
+                                className="absolute inset-0 rounded-2xl"
                             />
                             {/* Overlay sombre au survol */}
                             <div className="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-90 transition-opacity duration-300"></div>

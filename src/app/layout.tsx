@@ -40,6 +40,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={commuters.className}>
         <head>
+            <meta charSet="UTF-8" />
             <title>Christelle Bettoni - Portfolio</title>
             <link rel="icon" href="/logo.svg" />
         </head>
