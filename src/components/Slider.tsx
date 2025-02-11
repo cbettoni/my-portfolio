@@ -1,4 +1,3 @@
-/*
 import React from 'react';
 
 interface SliderProps {
@@ -24,4 +23,3 @@ const Slider: React.FC<SliderProps> = ({ value, onChange, min = 1, max = 100, st
 };
 
 export default Slider;
-*/

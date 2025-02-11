@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -17,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
     const [activeTab, setActiveTab] = useState('web');
 
-    const handleTabClick = (tab: string) => {
+    const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
 
@@ -94,7 +95,6 @@ const Home = () => {
 
     }, []);
 
-    // Type explicite ajouté ici pour l'événement
     const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault(); // Empêche le comportement par défaut de Next.js
         const targetId = e.currentTarget.getAttribute('href')?.replace('#', '');
@@ -366,9 +366,8 @@ const Home = () => {
                             <Image
                                 src={project.imageUrl}
                                 alt={project.title}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 50vw" // Ajuste la taille de l'image selon la largeur de l'écran
-                                style={{ objectFit: 'cover' }} // Maintien l'effet de "cover"
+                                layout="fill"
+                                objectFit="cover"
                                 className="absolute inset-0 rounded-2xl"
                             />
                             {/* Overlay sombre au survol */}

@@ -1,17 +1,18 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    as?: 'button' | 'a' | 'span';  // Ajout de 'span' comme type valide
+    as?: 'button' | 'a';
     href?: string;
     variant?: 'btn_primary' | 'btn_secondary' | 'btn_underline';
-    customStyles?: string;  // Pour des styles personnalisés
+    customStyles?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
-                                           as = 'button',  // Défaut à 'button'
+                                           as = 'button',
                                            variant = 'btn_primary',
-                                           className,
+                                           className = '',
                                            customStyles = '',
+                                           href,
                                            ...props
                                        }) => {
     const baseClasses =
@@ -26,12 +27,21 @@ const Button: React.FC<ButtonProps> = ({
             'p-2 text-dark-gray-cb underline underline-offset-8 decoration-2 hover:text-dark-green-cb focus:dark-gray-cb focus:underline-none',
     };
 
-    const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${customStyles} ${className || ''}`;
+    const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${customStyles} ${className}`;
 
-    // Dynamique de l'élément à rendre en fonction de la prop 'as'
-    const Component = as;
+    if (as === 'a' && href) {
+        return (
+            <a href={href} className={combinedClasses} {...props}>
+                {props.children}
+            </a>
+        );
+    }
 
-    return <Component className={combinedClasses} {...props} />;
+    return (
+        <button className={combinedClasses} {...props}>
+            {props.children}
+        </button>
+    );
 };
 
 export default Button;
