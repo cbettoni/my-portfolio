@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
     const [activeTab, setActiveTab] = useState('web');
 
-    const handleTabClick = (tab) => {
+    const handleTabClick = (tab: string) => {
         setActiveTab(tab);
     };
 

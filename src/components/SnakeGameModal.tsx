@@ -4,7 +4,13 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Dialog from './Dialog';
 import Button from '@/components/button';
 
-const SnakeGameModal = ({ isOpen, onClose }) => {
+// Typage des props
+interface SnakeGameModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+const SnakeGameModal: ({isOpen, onClose}: { isOpen: any; onClose: any }) => JSX.Element = ({ isOpen, onClose }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const gameLoopRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -12,52 +18,69 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
     const CANVAS_SIZE = 300;
     const CELL_SIZE = CANVAS_SIZE / GRID_SIZE;
 
+    // état du jeu
     const [gameState, setGameState] = useState({
         snake: [{ x: 5, y: 5 }],
         food: { x: 10, y: 10 },
         direction: { x: 1, y: 0 },
         score: 0,
         isRunning: false,
-        speed: 200
+        speed: 200,
     });
 
+    // Fonction pour obtenir une position aléatoire pour la nourriture
     const getRandomPosition = () => ({
         x: Math.floor(Math.random() * GRID_SIZE),
-        y: Math.floor(Math.random() * GRID_SIZE)
+        y: Math.floor(Math.random() * GRID_SIZE),
     });
 
+    // Gestion des mouvements via les touches fléchées
     const handleKeyPress = useCallback((event: KeyboardEvent) => {
         event.preventDefault();
-        setGameState(prev => {
+        setGameState((prev) => {
             const newDirection = { ...prev.direction };
             switch (event.key) {
                 case 'ArrowUp':
-                    if (prev.direction.y !== 1) newDirection.x = 0, newDirection.y = -1;
+                    if (prev.direction.y !== 1) {
+                        newDirection.x = 0;
+                        newDirection.y = -1;
+                    }
                     break;
                 case 'ArrowDown':
-                    if (prev.direction.y !== -1) newDirection.x = 0, newDirection.y = 1;
+                    if (prev.direction.y !== -1) {
+                        newDirection.x = 0;
+                        newDirection.y = 1;
+                    }
                     break;
                 case 'ArrowLeft':
-                    if (prev.direction.x !== 1) newDirection.x = -1, newDirection.y = 0;
+                    if (prev.direction.x !== 1) {
+                        newDirection.x = -1;
+                        newDirection.y = 0;
+                    }
                     break;
                 case 'ArrowRight':
-                    if (prev.direction.x !== -1) newDirection.x = 1, newDirection.y = 0;
+                    if (prev.direction.x !== -1) {
+                        newDirection.x = 1;
+                        newDirection.y = 0;
+                    }
+                    break;
+                default:
                     break;
             }
             return { ...prev, direction: newDirection };
         });
     }, []);
 
+    // Mise à jour du jeu (logique du serpent et de la nourriture)
     const updateGame = useCallback(() => {
-        setGameState(prev => {
+        setGameState((prev) => {
             const newSnake = [...prev.snake];
             const newHead = {
                 x: (newSnake[0].x + prev.direction.x + GRID_SIZE) % GRID_SIZE,
-                y: (newSnake[0].y + prev.direction.y + GRID_SIZE) % GRID_SIZE
+                y: (newSnake[0].y + prev.direction.y + GRID_SIZE) % GRID_SIZE,
             };
 
-            // Vérifier la collision avec soi-même
-            if (newSnake.some(segment => segment.x === newHead.x && segment.y === newHead.y)) {
+            if (newSnake.some((segment) => segment.x === newHead.x && segment.y === newHead.y)) {
                 resetGame();
                 return prev;
             }
@@ -67,7 +90,6 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
             let newScore = prev.score;
             let newSpeed = prev.speed;
 
-            // Vérifier si la nourriture est mangée
             if (newHead.x === prev.food.x && newHead.y === prev.food.y) {
                 newFood = getRandomPosition();
                 newScore += 1;
@@ -80,10 +102,14 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
         });
     }, []);
 
+    // Hook pour démarrer et arrêter le jeu
     useEffect(() => {
         if (gameState.isRunning) {
             gameLoopRef.current = setInterval(updateGame, gameState.speed);
             window.addEventListener('keydown', handleKeyPress);
+        } else {
+            if (gameLoopRef.current) clearInterval(gameLoopRef.current);
+            window.removeEventListener('keydown', handleKeyPress);
         }
 
         return () => {
@@ -92,24 +118,16 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
         };
     }, [gameState.isRunning, updateGame, handleKeyPress]);
 
-    useEffect(() => {
-        if (canvasRef.current) {
-            drawGame();
-        }
-    }, [gameState.snake, gameState.food]);
-
+    // Dessiner le jeu sur le canvas
     const drawGame = () => {
         if (!canvasRef.current) return;
         const ctx = canvasRef.current.getContext('2d');
         if (!ctx) return;
 
         ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-
-        // Fond du jeu
         ctx.fillStyle = '#1a1a1a';
         ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-        // Dessiner le serpent
         ctx.fillStyle = '#4ade80';
         gameState.snake.forEach((segment, index) => {
             const x = segment.x * CELL_SIZE;
@@ -124,7 +142,6 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
             ctx.fill();
         });
 
-        // Dessiner la nourriture
         ctx.fillStyle = '#ef4444';
         const foodX = gameState.food.x * CELL_SIZE;
         const foodY = gameState.food.y * CELL_SIZE;
@@ -133,9 +150,11 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
         ctx.fill();
     };
 
-    const startGame = () => setGameState(prev => ({ ...prev, isRunning: true }));
-    const pauseGame = () => setGameState(prev => ({ ...prev, isRunning: false }));
+    // Démarrer et mettre en pause le jeu
+    const startGame = () => setGameState((prev) => ({ ...prev, isRunning: true }));
+    const pauseGame = () => setGameState((prev) => ({ ...prev, isRunning: false }));
 
+    // Réinitialiser le jeu
     const resetGame = () => {
         setGameState({
             snake: [{ x: 5, y: 5 }],
@@ -143,9 +162,16 @@ const SnakeGameModal = ({ isOpen, onClose }) => {
             direction: { x: 1, y: 0 },
             score: 0,
             isRunning: false,
-            speed: 200
+            speed: 200,
         });
     };
+
+    // Quand le canvas est mis à jour, redessiner le jeu
+    useEffect(() => {
+        if (canvasRef.current) {
+            drawGame();
+        }
+    }, [gameState.snake, gameState.food]);
 
     return (
         <Dialog isOpen={isOpen} onClose={onClose} title="Snake Game">
