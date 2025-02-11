@@ -150,7 +150,7 @@ const SnakeGameModal: React.FC<SnakeGameModalProps> = ({ isOpen, onClose }) => {
         ctx.beginPath();
         ctx.arc(foodX + CELL_SIZE / 2, foodY + CELL_SIZE / 2, CELL_SIZE / 2 - 1, 0, Math.PI * 2);
         ctx.fill();
-    }, [gameState.snake, gameState.food]);
+    }, [gameState.snake, gameState.food, CELL_SIZE]);  // Ajout de CELL_SIZE dans les dépendances
 
     useEffect(() => {
         if (gameState.isRunning) {

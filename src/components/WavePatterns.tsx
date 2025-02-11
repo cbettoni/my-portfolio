@@ -3,13 +3,17 @@
 import { useEffect, useRef } from 'react';
 
 const WavePatterns = () => {
-    const canvasRef = useRef(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null); // Typage de la référence canvas
     const mouseRef = useRef({ x: 0, y: 0, moved: false });
 
     useEffect(() => {
         const canvas = canvasRef.current;
+        if (!canvas) return;  // Vérifiez si canvas est null avant de continuer
+
         const ctx = canvas.getContext('2d');
-        let animationFrameId;
+        if (!ctx) return;  // Vérifiez si ctx est null
+
+        let animationFrameId: number;  // Typage explicite
         let time = 0;
 
         // Configuration optimisée des vagues
@@ -39,8 +43,8 @@ const WavePatterns = () => {
             ctx.scale(dpr, dpr);
         };
 
-        // Fonction pour dessiner les vagues
-        const drawWave = (yOffset, opacity) => {
+        // Fonction pour dessiner les vagues avec typage des paramètres
+        const drawWave = (yOffset: number, opacity: number) => {
             ctx.beginPath();
             ctx.moveTo(0, canvas.height / 2);
 
@@ -98,8 +102,8 @@ const WavePatterns = () => {
             animationFrameId = requestAnimationFrame(animate);
         };
 
-        // Gestion des mouvements de souris
-        const handleMouseMove = (e) => {
+        // Gestion des mouvements de souris avec typage de l'événement
+        const handleMouseMove = (e: MouseEvent) => {  // Typage de 'e' comme MouseEvent
             const rect = canvas.getBoundingClientRect();
             mouseRef.current = {
                 x: e.clientX - rect.left,

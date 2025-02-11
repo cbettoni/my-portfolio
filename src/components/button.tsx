@@ -1,10 +1,14 @@
 import React from 'react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
     as?: 'button' | 'a';
     href?: string;
     variant?: 'btn_primary' | 'btn_secondary' | 'btn_underline';
     customStyles?: string;
+    children: React.ReactNode;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;  // Mise à jour ici pour accepter l'événement
+    className?: string;
+    type?: 'button' | 'submit' | 'reset';
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -13,7 +17,9 @@ const Button: React.FC<ButtonProps> = ({
                                            className = '',
                                            customStyles = '',
                                            href,
-                                           ...props
+                                           children,
+                                           type = 'button',
+                                           onClick,
                                        }) => {
     const baseClasses =
         'inline-flex items-center justify-center gap-2 text-sm rounded-full font-bold transition-colors focus:outline-none focus:ring-1 focus:ring-ring disabled:opacity-50';
@@ -31,15 +37,15 @@ const Button: React.FC<ButtonProps> = ({
 
     if (as === 'a' && href) {
         return (
-            <a href={href} className={combinedClasses} {...props}>
-                {props.children}
+            <a href={href} className={combinedClasses}>
+                {children}
             </a>
         );
     }
 
     return (
-        <button className={combinedClasses} {...props}>
-            {props.children}
+        <button className={combinedClasses} type={type} onClick={onClick}>
+            {children}
         </button>
     );
 };

@@ -1,14 +1,27 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Instagram, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
+// Typage des objets Portfolio
+interface PortfolioItem {
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    images: string[];
+}
+
+interface ProjectModalProps {
+    project: PortfolioItem | null;
+    onClose: () => void;
+}
+
 const Portfolio = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [currentPage, setCurrentPage] = useState('portfolio');
-    const [selectedProject, setSelectedProject] = useState(null);
+    const [currentPage, setCurrentPage] = useState<'portfolio' | 'about' | 'contact'>('portfolio');
+    const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -23,8 +36,7 @@ const Portfolio = () => {
         };
     }, [isModalOpen]);
 
-    // Données de démonstration enrichies
-    const portfolioItems = [
+    const portfolioItems: PortfolioItem[] = [
         {
             id: 1,
             title: 'Collection Printemps',
@@ -73,7 +85,7 @@ const Portfolio = () => {
 
     const Navigation = () => (
         <nav className={`fixed top-0 left-0 h-full bg-white w-64 transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} 
-      transition-transform duration-300 ease-in-out md:translate-x-0 border-r border-gray-100 z-50`}>
+        transition-transform duration-300 ease-in-out md:translate-x-0 border-r border-gray-100 z-50`}>
             <div className="px-8 py-12 h-full flex flex-col">
                 <button onClick={() => setIsMenuOpen(false)} className="md:hidden absolute top-4 right-4">
                     <X size={24} className="text-gray-400" />
@@ -113,7 +125,7 @@ const Portfolio = () => {
         </nav>
     );
 
-    const ProjectModal = ({ project, onClose }) => {
+    const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
         if (!project) return null;
 
         const nextSlide = () => {
@@ -131,7 +143,6 @@ const Portfolio = () => {
         return (
             <div className="fixed inset-0 bg-black bg-opacity-75 z-[100] flex items-center justify-center">
                 <div className="bg-white w-full max-w-5xl relative h-[85vh] flex flex-col">
-                    {/* Bouton fermeture */}
                     <button
                         onClick={() => {
                             onClose();
@@ -142,7 +153,6 @@ const Portfolio = () => {
                         <X size={24} />
                     </button>
 
-                    {/* Carousel */}
                     <div className="relative flex-1 bg-black overflow-hidden">
                         <div
                             className="absolute inset-0 flex transition-transform duration-500 ease-in-out"
@@ -161,7 +171,6 @@ const Portfolio = () => {
                             ))}
                         </div>
 
-                        {/* Navigation buttons */}
                         <button
                             onClick={prevSlide}
                             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-black p-3 rounded-full hover:bg-opacity-75 transition-opacity z-[101]"
@@ -176,8 +185,6 @@ const Portfolio = () => {
                             <ChevronRight size={24} />
                         </button>
 
-
-                        {/* Indicateurs de slides */}
                         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3 z-[101]">
                             {project.images.map((_, index) => (
                                 <button
@@ -193,7 +200,6 @@ const Portfolio = () => {
                         </div>
                     </div>
 
-                    {/* Bandeau d'information */}
                     <div className="bg-white px-8 py-6 border-t border-gray-100">
                         <div className="max-w-3xl mx-auto">
                             <h2 className="text-2xl font-light tracking-wider mb-2">{project.title}</h2>

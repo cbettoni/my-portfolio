@@ -3,15 +3,30 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 
-export default function ProjectCard({ title, description, link, imageUrl, onClick }) {
-    const projectRef = useRef(null);
+// Définir l'interface des props du composant
+interface ProjectCardProps {
+    title: string;
+    description: string;
+    link: string;
+    imageUrl: string;
+    onClick?: () => void;  // L'onClick est optionnel, car tous les projets n'ont pas nécessairement une fonction à appeler
+}
 
-    const handleProjectClick = (e) => {
+export default function ProjectCard({
+                                        title,
+                                        description,
+                                        link,
+                                        imageUrl,
+                                        onClick
+                                    }: ProjectCardProps) {
+    const projectRef = useRef(null);
+    const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault(); // Empêche le comportement par défaut du lien (redirection)
         if (onClick) {
-            onClick(); // Ouvre la modale
+            onClick(); // Appelle la fonction onClick, si elle existe
         }
     };
+
 
     return (
         <motion.div

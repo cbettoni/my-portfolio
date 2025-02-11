@@ -5,6 +5,7 @@ interface DialogProps {
     onClose: () => void;
     title?: string;
     children: React.ReactNode;
+    className?: string;
 }
 
 const DialogTitle: React.FC<{ title?: string }> = ({ title }) => {

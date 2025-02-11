@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -18,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
     const [activeTab, setActiveTab] = useState('web');
 
-    const handleTabClick = (tab) => {
+    const handleTabClick = (tab: string) => {
         setActiveTab(tab);
     };
 
@@ -159,7 +158,7 @@ const Home = () => {
                     <div className="hero-button">
                         <Link href="#projects" passHref legacyBehavior>
                             <a onClick={smoothScroll}>
-                                <Button type="submit" variant="btn_secondary" as="span">
+                                <Button variant="btn_secondary" as="a">
                                     Voir mes projets
                                 </Button>
                             </a>
@@ -392,7 +391,9 @@ const Home = () => {
                                         variant="btn_primary"
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            project.onClick();
+                                            if (project.onClick) {
+                                                project.onClick();
+                                            }
                                         }}
                                         className="mt-4"
                                     >
@@ -417,7 +418,6 @@ const Home = () => {
                         <div className="my-6 flex justify-center">
                             <Link href="mailto:christelle.bettoni@gmail.com" passHref>
                                 <Button
-                                    type="submit"
                                     variant="btn_secondary"
                                     as="a"
                                 >
@@ -429,7 +429,6 @@ const Home = () => {
                         <div className="my-6 flex justify-center">
                             <Link href="/CV_CBettoni_FrontEnd.pdf" passHref>
                                 <Button
-                                    type="submit"
                                     variant="btn_secondary"
                                     as="a"
                                 >

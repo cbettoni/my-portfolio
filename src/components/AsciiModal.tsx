@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import Dialog from './Dialog';
 import Button from '@/components/button';
 
-const AsciiModal = ({ isOpen, onClose }) => {
+// Définir le type des props attendues
+interface AsciiModalProps {
+    isOpen: boolean;  // Indique si la modale est ouverte ou fermée
+    onClose: () => void; // Fonction pour fermer la modale
+}
+
+const AsciiModal: React.FC<AsciiModalProps> = ({ isOpen, onClose }) => {
     const [image, setImage] = useState<File | null>(null);
     const [asciiArt, setAsciiArt] = useState<string | null>(null);
     const [zoom, setZoom] = useState(1); // Etat pour gérer le zoom
@@ -179,18 +185,18 @@ const AsciiModal = ({ isOpen, onClose }) => {
                         <>
                             {/* Display ASCII art */}
                             <div className="overflow-auto bg-dark-gray-cb text-white flex justify-center">
-                                <pre style={{
-                                    whiteSpace: 'pre-wrap',
-                                    wordWrap: 'break-word',
-                                    fontFamily: 'monospace',
-                                    fontSize: `${13 * zoom}px`,  // Zoom en fonction du facteur (largeur)
-                                    lineHeight: `${8 * zoom}px`, // Zoom vertical (hauteur de ligne)
-                                    overflowX: 'auto',  // Défilement horizontal si nécessaire
-                                    margin: 0,
-                                    padding: 0
-                                }}>
-                                    {asciiArt}
-                                </pre>
+                <pre style={{
+                    whiteSpace: 'pre-wrap',
+                    wordWrap: 'break-word',
+                    fontFamily: 'monospace',
+                    fontSize: `${13 * zoom}px`,  // Zoom en fonction du facteur (largeur)
+                    lineHeight: `${8 * zoom}px`, // Zoom vertical (hauteur de ligne)
+                    overflowX: 'auto',  // Défilement horizontal si nécessaire
+                    margin: 0,
+                    padding: 0
+                }}>
+                  {asciiArt}
+                </pre>
                             </div>
 
                             {/* Zoom buttons */}
