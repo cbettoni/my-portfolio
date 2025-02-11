@@ -366,8 +366,9 @@ const Home = () => {
                             <Image
                                 src={project.imageUrl}
                                 alt={project.title}
-                                layout="fill"
-                                objectFit="cover"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw" // Ajuste la taille de l'image selon la largeur de l'écran
+                                style={{ objectFit: 'cover' }} // Maintien l'effet de "cover"
                                 className="absolute inset-0 rounded-2xl"
                             />
                             {/* Overlay sombre au survol */}

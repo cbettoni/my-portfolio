@@ -22,13 +22,13 @@ const Header = () => {
             <div className="sticky-nav flex flex-col justify-between 2xl:flex-row transition-colors duration-300">
                 <div className="container flex justify-between flex-col 2xl:flex-row">
                     <div className="flex justify-between items-center">
-                        <Link href="/" className="logo w-[50px] h-auto object-contain">
+                        <Link href="/" className="logo w-[50px] h-auto">
                             <Image
                                 src="/logo.svg"
                                 alt="Logo"
                                 width={182}
                                 height={50}
-                                className="w-full"
+                                className="object-contain"
                             />
                         </Link>
 
