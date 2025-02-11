@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -95,10 +94,11 @@ const Home = () => {
 
     }, []);
 
-    const smoothScroll = (e) => {
+    // Type explicite ajouté ici pour l'événement
+    const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault(); // Empêche le comportement par défaut de Next.js
-        const targetId = e.currentTarget.getAttribute('href').replace('#', '');
-        const targetElement = document.getElementById(targetId);
+        const targetId = e.currentTarget.getAttribute('href')?.replace('#', '');
+        const targetElement = document.getElementById(targetId ?? '');
 
         if (targetElement) {
             window.scrollTo({
